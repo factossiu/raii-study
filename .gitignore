@@ -1,0 +1,19 @@
+# Build artifacts
+*.exe
+*.obj
+*.ilk
+*.pdb
+*.idb
+*.log
+*.suo
+*.user
+*.vcxproj.user
+
+# Visual Studio / CMake
+.vs/
+Debug/
+Release/
+
+# OS files
+.DS_Store
+Thumbs.db
