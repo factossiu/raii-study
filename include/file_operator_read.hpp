@@ -2,6 +2,8 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
+#include "error_handler.hpp"
 
 class FileOperatorRead {
     std::ifstream file;
@@ -11,8 +13,6 @@ public:
     ~FileOperatorRead();
 
     bool open_success() const;
-    void read_data();
-    std::ifstream &get_file();
+    FileError read_all(std::vector<std::string> &lines);
+    const std::ifstream &get_file() const;
 };
-
-void ReadControl(const std::string &filepath);

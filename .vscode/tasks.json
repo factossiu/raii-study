@@ -12,7 +12,8 @@
                 "/Fe:main.exe",
                 "main.cpp",
                 "src\\file_operator_write.cpp",
-                "src\\file_operator_read.cpp"
+                "src\\file_operator_read.cpp",
+                "src\\ui_controller.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

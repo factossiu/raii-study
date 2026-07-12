@@ -1,7 +1,5 @@
 #include "../include/file_operator_read.hpp"
 
-#include <iostream>
-
 using namespace std;
 
 FileOperatorRead::FileOperatorRead() = default;
@@ -20,22 +18,21 @@ bool FileOperatorRead::open_success() const {
     return file.is_open();
 }
 
-void FileOperatorRead::read_data() {
-    if (open_success()) {
-        string line;
-        while (getline(file, line)) {
-            cout << line << endl;
-        }
-    } else {
-        cerr << "Open failed" << endl;
+FileError FileOperatorRead::read_all(vector<string> &lines) {
+    if (!file.is_open()) {
+        return FileError::ReadFailed;
     }
+    lines.clear();
+    string line;
+    while (getline(file, line)) {
+        lines.push_back(line);
+    }
+    if (file.bad()) {
+        return FileError::ReadFailed;
+    }
+    return FileError::Success;
 }
 
-ifstream &FileOperatorRead::get_file() {
+const std::ifstream &FileOperatorRead::get_file() const {
     return file;
-}
-
-void ReadControl(const string &filepath) {
-    FileOperatorRead read_file_object(filepath);
-    read_file_object.read_data();
 }

@@ -1,19 +1,24 @@
 #include <iostream>
 #include <string>
 
-#include "include/file_operator_write.hpp"
-#include "include/file_operator_read.hpp"
+#include "include/ui_controller.hpp"
 
-using namespace std;
+
 
 int main() {
     int item;
-    string filePath;
+    std::string filePath;
 
-    cout << "1 write file, 2 read file" << endl;
-    cin >> item;
-    cout << "Please enter file name" << endl;
-    cin >> filePath;
+    std::cout << "1 write file, 2 read file" << std::endl;
+    if (!(std::cin >> item) || item < 1 || item > 2) {
+        std::cerr << "Invalid input" << std::endl;
+        return 1;
+    }
+    std::cout << "Please enter file name" << std::endl;
+    if (!(std::cin >> filePath)) {
+        std::cerr << "Invalid file path" << std::endl;
+        return 1;
+    }
 
     switch (item) {
     case 1:
@@ -23,6 +28,7 @@ int main() {
         ReadControl(filePath);
         break;
     default:
-        break;
+        std::cerr << "Invalid option" << std::endl;
+        return 1;
     }
 }
