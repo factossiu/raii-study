@@ -2,7 +2,7 @@
 #include <string>
 #include "log_dll.h"
 #include "include/ui_controller.hpp"
-#include "include/common_func.h"
+
 
 
 

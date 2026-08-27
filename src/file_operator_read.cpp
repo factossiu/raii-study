@@ -1,10 +1,10 @@
 #include "../include/file_operator_read.hpp"
 
-using namespace std;
+
 
 FileOperatorRead::FileOperatorRead() = default;
 
-FileOperatorRead::FileOperatorRead(const string &filepath) {
+FileOperatorRead::FileOperatorRead(const std::string &filepath) {
     file.open(filepath);
 }
 
@@ -20,12 +20,13 @@ bool FileOperatorRead::open_success() const {
     return file.is_open();
 }
 
-FileError FileOperatorRead::read_all(vector<string> &lines) {
+FileError FileOperatorRead::read_all(std::vector<std::string> &lines) {
     if (!file.is_open()) {
         return FileError::ReadFailed;
     }
     lines.clear();
-    string line;
+
+    std::string line;
     while (getline(file, line)) {
         lines.push_back(line);
     }

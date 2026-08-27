@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include "error_handler.hpp"
 #include "common_func.h"
 #include "../include/file_operator_write.hpp"
 #include "../include/file_operator_read.hpp"
