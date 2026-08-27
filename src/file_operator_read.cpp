@@ -9,6 +9,8 @@ FileOperatorRead::FileOperatorRead(const string &filepath) {
 }
 
 FileOperatorRead::~FileOperatorRead() {
+
+    //析构函数显式调用 file.close() 是冗余,为了方便理解RALL故保留该文件关闭处理
     if (file.is_open()) {
         file.close();
     }

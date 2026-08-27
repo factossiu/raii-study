@@ -5,6 +5,7 @@
 #include <vector>
 #include "error_handler.hpp"
 
+
 class FileOperatorRead {
     std::ifstream file;
 public:

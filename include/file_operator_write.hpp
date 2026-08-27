@@ -4,6 +4,7 @@
 #include <string>
 #include "error_handler.hpp"
 
+
 class FileOperatorWrite {
     std::ofstream file;
 public:

@@ -1,6 +1,5 @@
-#include "../include/file_operator_write.hpp"
-#include "../include/file_operator_read.hpp"
-#include "../include/error_handler.hpp"
+#include "../include/ui_controller.hpp"
+
 
 
 #include <iostream>
@@ -15,6 +14,7 @@ void WriteControl(const std::string &filepath) {
     std::cin >> open_mode;
     if (open_mode > 2 || open_mode < 1) {
         std::cerr << error_message(FileError::InvalidInput) << std::endl;
+        send_msg_to_print(error_message(FileError::InvalidInput).c_str());
         return;
     }
 
@@ -22,6 +22,7 @@ void WriteControl(const std::string &filepath) {
     FileOperatorWrite writer(filepath, write_mode);
     if (!writer.open_success()) {
         std::cerr << error_message(FileError::OpenFailed) << std::endl;
+        send_msg_to_print(error_message(FileError::OpenFailed).c_str());
         return;
     }
 
@@ -35,6 +36,7 @@ void WriteControl(const std::string &filepath) {
         std::cout << "Write complete" << std::endl;
     } else {
         std::cerr << error_message(result) << std::endl;
+        send_msg_to_print(error_message(result).c_str());
     }
 }
 
@@ -42,6 +44,7 @@ void ReadControl(const std::string &filepath) {
     FileOperatorRead reader(filepath);
     if (!reader.open_success()) {
         std::cerr << error_message(FileError::OpenFailed) << std::endl;
+        send_msg_to_print(error_message(FileError::OpenFailed).c_str());
         return;
     }
 
@@ -49,6 +52,7 @@ void ReadControl(const std::string &filepath) {
     FileError result = reader.read_all(lines);
     if (result != FileError::Success) {
         std::cerr << error_message(result) << std::endl;
+        send_msg_to_print(error_message(result).c_str());
         return;
     }
 
