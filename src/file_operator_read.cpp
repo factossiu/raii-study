@@ -24,15 +24,15 @@ FileError FileOperatorRead::read_all(std::vector<std::string> &lines) {
     if (!file.is_open()) {
         return FileError::ReadFailed;
     }
-    lines.clear();
-
+    std::vector<std::string> tmp;
     std::string line;
     while (getline(file, line)) {
-        lines.push_back(line);
+        tmp.push_back(std::move(line));
     }
     if (file.bad()) {
         return FileError::ReadFailed;
     }
+    lines = std::move(tmp);
     return FileError::Success;
 }
 

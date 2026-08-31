@@ -11,10 +11,13 @@
 void WriteControl(const std::string &filepath) {
     int open_mode;
     std::cout << "1 for overwrite mode, 2 for append mode" << std::endl;
-    std::cin >> open_mode;
+    if(!(std::cin >> open_mode)) {
+        send_msg_to_print("Invalid input for open mode");
+        return;
+    }
     if (open_mode > 2 || open_mode < 1) {
         std::cerr << error_message(FileError::InvalidInput) << std::endl;
-        send_msg_to_print(error_message(FileError::InvalidInput).c_str());
+        send_msg_to_print(error_message(FileError::InvalidInput));
         return;
     }
 
@@ -22,7 +25,7 @@ void WriteControl(const std::string &filepath) {
     FileOperatorWrite writer(filepath, write_mode);
     if (!writer.open_success()) {
         std::cerr << error_message(FileError::OpenFailed) << std::endl;
-        send_msg_to_print(error_message(FileError::OpenFailed).c_str());
+        send_msg_to_print(error_message(FileError::OpenFailed));
         return;
     }
 
@@ -36,7 +39,7 @@ void WriteControl(const std::string &filepath) {
         std::cout << "Write complete" << std::endl;
     } else {
         std::cerr << error_message(result) << std::endl;
-        send_msg_to_print(error_message(result).c_str());
+        send_msg_to_print(error_message(result));
     }
 }
 
@@ -44,7 +47,7 @@ void ReadControl(const std::string &filepath) {
     FileOperatorRead reader(filepath);
     if (!reader.open_success()) {
         std::cerr << error_message(FileError::OpenFailed) << std::endl;
-        send_msg_to_print(error_message(FileError::OpenFailed).c_str());
+        send_msg_to_print(error_message(FileError::OpenFailed));
         return;
     }
 
@@ -52,7 +55,7 @@ void ReadControl(const std::string &filepath) {
     FileError result = reader.read_all(lines);
     if (result != FileError::Success) {
         std::cerr << error_message(result) << std::endl;
-        send_msg_to_print(error_message(result).c_str());
+        send_msg_to_print(error_message(result));
         return;
     }
 
