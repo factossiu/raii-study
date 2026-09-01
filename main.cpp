@@ -7,12 +7,12 @@
 
 
 int main() {
-    int item;
+    int i_item;
  
     std::string s_filePathName;
 
     std::cout << "1 write file, 2 read file" << std::endl;
-    if (!(std::cin >> item) || item < 1 || item > 2) {
+    if (!(std::cin >> i_item) || i_item < 1 || i_item > 2) {
         send_msg_to_print("Invalid option in choosing write or read");
         return 1;
     }
@@ -22,7 +22,7 @@ int main() {
         return 1;
     }
 
-    switch (item) {
+    switch (i_item) {
     case 1:
         WriteControl(s_filePathName);
         break;

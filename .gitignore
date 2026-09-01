@@ -13,6 +13,7 @@
 .vs/
 Debug/
 Release/
+build/
 
 # OS files
 .DS_Store
