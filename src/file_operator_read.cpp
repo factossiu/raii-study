@@ -16,7 +16,7 @@ FileOperatorRead::~FileOperatorRead() {
     }
 }
 
-bool FileOperatorRead::open_success() const {
+bool FileOperatorRead::open_success()  const noexcept {
     return file.is_open();
 }
 
@@ -38,4 +38,14 @@ FileError FileOperatorRead::read_all(std::vector<std::string> &lines) {
 
 const std::ifstream &FileOperatorRead::get_file() const {
     return file;
+}
+
+FileOperatorRead::FileOperatorRead(FileOperatorRead &&other) noexcept : file(std::move(other.file))
+ {}
+
+FileOperatorRead &FileOperatorRead::operator=(FileOperatorRead &&other) noexcept {
+    if (this != &other) {
+        file = std::move(other.file);
+    }
+    return *this;
 }

@@ -3,6 +3,5 @@
 
 void send_msg_to_print(const std::string &message)
 {
-       std::string s_log = message;
-       print_log_message(s_log.c_str());
+       print_log_message(message.c_str());
 }

@@ -12,8 +12,16 @@ public:
     FileOperatorRead();
     explicit FileOperatorRead(const std::string &filepath);
     ~FileOperatorRead();
+    FileOperatorRead(const FileOperatorRead &) = delete;
+    FileOperatorRead &operator=(const FileOperatorRead &) = delete;
 
-    bool open_success() const;
+    FileOperatorRead(FileOperatorRead && other) noexcept;
+    FileOperatorRead &operator=(FileOperatorRead && other) noexcept;
+
+
+    bool open_success() const noexcept;
     FileError read_all(std::vector<std::string> &lines);
     const std::ifstream &get_file() const;
+
+
 };

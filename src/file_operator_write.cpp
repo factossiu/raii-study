@@ -20,7 +20,7 @@ FileOperatorWrite::~FileOperatorWrite() {
     }
 }
 
-bool FileOperatorWrite::open_success() const {
+bool FileOperatorWrite::open_success() const noexcept{
     return file.is_open();
 }
 
@@ -38,3 +38,13 @@ FileError FileOperatorWrite::write_data(const std::string &data) {
     }
     return FileError::Success;
 }
+
+FileOperatorWrite::FileOperatorWrite(FileOperatorWrite &&other) noexcept : file(std::move(other.file)) {}
+FileOperatorWrite& FileOperatorWrite::operator=(FileOperatorWrite &&other) noexcept
+{
+    if (this != &other) {
+        file = std::move(other.file);
+    }
+    return *this;
+}
+

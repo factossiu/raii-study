@@ -14,6 +14,7 @@ endif()
 
 # 第三方预编译 DLL 的导入库（log_dll.dll / log_dll.lib / log_dll.h）
 add_library(log_dll SHARED IMPORTED)
+
 set_target_properties(log_dll PROPERTIES
     IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/log_dll.dll"
     IMPORTED_IMPLIB   "${CMAKE_SOURCE_DIR}/log_dll.lib"
